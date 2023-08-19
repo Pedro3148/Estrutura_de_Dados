@@ -6,11 +6,11 @@ void prime(int value){
     int isPrime = 1;
 
     if(value == 1){
-        return isPrime = 0;
+        isPrime = 0;
     }
 
-    if(value % 2 == 0 || value != 2){
-        return isPrime = 0;
+    if(value % 2 == 0 && value != 2){
+        isPrime = 0;
     }
 
     for(i=value-1;i>1;i--){
