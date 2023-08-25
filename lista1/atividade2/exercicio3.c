@@ -6,15 +6,30 @@ Saída: 0
 */
 
 #include <stdio.h>
+#include <string.h>
 
+int busca_string(char **array, int tamanho, char *string_busca) {
+    for (int i = 0; i < tamanho; i++) {
+        if (strcmp(array[i], string_busca) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
-int main(){
+int main() {
+    char *array[] = {"texto", "J", "EDA"};
+    char *string_busca;
+    int tamanho = sizeof(array) / sizeof(array[0]);
 
-    char string[10][10] = {
-        {"texto"}, {"J"}, {"EDA"}
-    };
+    gets(string_busca);
+    int resultado = busca_string(array, tamanho, string_busca);
 
-    printf("%d", sizeof(string));
-    
+    if (resultado == 1) {
+        printf("1\n");
+    } else {
+        printf("0\n");
+    }
+
     return 0;
 }
