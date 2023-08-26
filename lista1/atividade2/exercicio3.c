@@ -21,7 +21,7 @@ int main() {
     char *array[] = {"texto", "J", "EDA"};
     char *string_busca;
     int tamanho = sizeof(array) / sizeof(array[0]);
-
+                                                                                            
     gets(string_busca);
     int resultado = busca_string(array, tamanho, string_busca);
 
