@@ -10,10 +10,11 @@ void swap(int *n1, int *n2){
 
 void bubble_sort(int array[], int tamanho){
     int i, j;
-    for(i = 0; i < tamanho - 1; i++){
-        for(j = 0; j < tamanho - 1 - i; j++){
-            if(array[j]>array[j+1]){
-                swap(&array[j], &array[j+1]);
+    
+    for (i = 0; i < tamanho; i++) {
+        for (j = 0; j < tamanho - 1 - i; j++) {
+            if (array[j] > array[j + 1]) {
+                swap(&array[j], &array[j + 1]);
             }
         }
     }
