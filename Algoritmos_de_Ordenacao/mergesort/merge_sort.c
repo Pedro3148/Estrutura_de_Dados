@@ -8,7 +8,7 @@ void merge(int *a, int left, int middle, int right) {
     index_subarray2 = middle + 1;
 
     int length = right - left + 1;
-    int helper[length];
+    int *helper = (int *) calloc(length, sizeof(int));
 
     for (index_helper = 0; index_helper < length; index_helper++) {
         if (index_subarray1 <= middle && index_subarray2 <= right){
@@ -20,7 +20,7 @@ void merge(int *a, int left, int middle, int right) {
                 index_subarray2++;
             }
         } else {
-            if (index_subarray1 < middle + 1) {
+            if (index_subarray1 <= middle) {
                 helper[index_helper] = a[index_subarray1];
                 index_subarray1++;
             } else {
