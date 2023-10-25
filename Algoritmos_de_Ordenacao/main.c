@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "bubblesort/bubble_sort.h"
-#include "selectionSort/selection_sort.h"
+#include "selectionsort/selection_sort.h"
 #include "mergesort/merge_sort.h"
 
 void imprimir_array(int array[], int tamanho){
