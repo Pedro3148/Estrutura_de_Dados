@@ -14,10 +14,12 @@ void selection_sort(int *array, int length) {
     for (i = 0; i < length - 1; i++) {
         menor = i;
         for (j = i + 1; j < length; j++) {
-            if (array[j] < array[menor]) 
+            if (array[j] < array[menor]) {
                 menor = j;
+            }
         }
-        if (i != menor) 
-            swap(&array[i], &array[menor]);
+        if (menor != i) {
+            swap(&array[menor], &array[i]);
+        }
     }
 }
