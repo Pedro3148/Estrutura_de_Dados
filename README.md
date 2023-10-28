@@ -76,4 +76,62 @@ void selection_sort(int *array, int length) {
 * É mais eficiente que o bubble sort
 <hr>
 
-> Insertion Sort
+> Merge Sort
+* o princípio de funcionamento desse algoritmo é a recursão para dividir o array em unidades menores e depois entra o merge. O merge é a união de forma ordenada de dois dos segmentos do array. 
+
+```
+void merge(int *v, int left, int middle, int right) {
+    int indexVetor1, indexVetor2, indexHelper;
+    indexVetor1 = left;
+    indexVetor2 = middle + 1;
+
+    int length = right - left + 1;
+    int *helper = (int *) calloc(length, sizeof(int));
+
+    if (helper) {
+        for (indexHelper = 0; indexHelper < length; indexHelper++) {
+            if (indexVetor1 <= middle && indexVetor2 <= right) {
+                if (v[indexVetor1] < v[indexVetor2]) {
+                    helper[indexHelper] = v[indexVetor1];
+                    indexVetor1++;
+                } else {
+                    helper[indexHelper] = v[indexVetor2];
+                    indexVetor2++;
+                }
+            } else {
+                if (indexVetor1 <= middle) {
+                    helper[indexHelper] = v[indexVetor1];
+                    indexVetor1++;
+                } else {
+                    helper[indexHelper] = v[indexVetor2];
+                    indexVetor2++;
+                }
+            }
+        }
+        int i = left;
+        for (indexHelper = 0; indexHelper < length; indexHelper++) {
+            v[i] = helper[indexHelper];
+            i++;
+        }
+    }
+    free(helper);
+}
+
+void merge_sort(int *v, int left, int right) {
+    int middle;
+    if (left < right) {
+        middle = (left + right) / 2;
+        merge_sort(v, left, middle);
+        merge_sort(v, middle + 1, right);
+        merge(v, left, middle, right);
+    }
+}
+```
+* merge_sort: consiste em uma chamada recursiva que divide o array por indece: left, middle e right, assim formando uma especie de nova array
+* merge: união de segmentos do array de forma ordenada
+* usa um array Helper como array temporário para ajudar na ordenação
+* usando variaveis de controle que sempre começam no inicio do "array" correspondete faça um loop que preenche o Helper com elemento dois dois arrays, comparando elemento de um segmento com o outro segmento e depositando o menor no helper
+* Por fim, passa todos os elementos do helper para o array original
+* Embora o eficiencia desse algoritmo seja a mesma independente da ordem, ele possui um gasto elevado de espaço memoria comparado aos outros algoritmos de ordenação
+
+>Quick Sort
