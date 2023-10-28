@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "abrir_arquivo.h": "c",
-        "operacao_arquivo.h": "c"
+        "operacao_arquivo.h": "c",
+        "bubble_sort.h": "c"
     }
 }
