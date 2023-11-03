@@ -22,11 +22,16 @@ int main(int argc, char *argv[]) {
     NO *lista_ordenada = criar_no(valor, NULL);
  
     int count = 0;
+    clock_t inicio = clock();
     while (fscanf(arquivo, "%f", &valor) != EOF) {
         printf("N: %d\n", ++count);
-        system("pause");
         //inserir_no_finalLista(lista_nao_ordenada, criar_no(valor, NULL));    
         lista_inserir_no_ordenado(lista_ordenada, criar_no(valor, NULL));
     }
+    clock_t fim = clock();
+    double tempo = (double) fim - inicio;
+    system("cls");
+    printf("Tempo: %f\n", tempo);
+    system("pause");
     return 0;
 }
