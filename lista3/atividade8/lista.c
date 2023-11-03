@@ -87,30 +87,13 @@ void lista_inserir_no_i(NO* lista, int i) {
         printf("Posicao invalida para insercao.\n");
         return;
     }
-
-    NO* novo_no = criar_no('9', NULL);
-    NO* atual = lista;
-
-    if (i == 0) {
-        novo_no->proximo_no = lista;
-        lista = novo_no;
-        return;
+    NO *no_atual = lista;
+    int j;
+    for (j = 0; j < i - 1; ++j) {
+        no_atual = no_atual->proximo_no;
     }
-
-    int pos = 0;
-    while (atual != NULL && pos < i - 1) {
-        atual = atual->proximo_no;
-        pos++;
-    }
-
-    if (atual == NULL) {
-        printf("Posição invalida para insercao.\n");
-        free(novo_no);
-        return;
-    }
-
-    novo_no->proximo_no = atual->proximo_no;
-    atual->proximo_no = novo_no;
+    NO *no = criar_no('A', no_atual->proximo_no);
+    no_atual->proximo_no = no;
 }
 
 void lista_remover_no_i(NO* lista, int i) {

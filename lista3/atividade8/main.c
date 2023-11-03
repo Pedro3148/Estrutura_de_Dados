@@ -17,23 +17,23 @@ int main() {
     lista_imprimir(n0);
 
 
-    printf("\n\nO valor \'P\' esta contido na lista: %d\n\n", lista_verificar_existencia(n0, 'P'));
+    // printf("\n\nO valor \'P\' esta contido na lista: %d\n\n", lista_verificar_existencia(n0, 'P'));
     
-    printf("Ocorrencias: %d\n\n", lista_verificar_ocorrencias(n0, 'U'));
+    // printf("Ocorrencias: %d\n\n", lista_verificar_ocorrencias(n0, 'U'));
 
-    printf("Lista Inversa\n");
-    lista_imprimir_inversa(n0);
+    // printf("Lista Inversa\n");
+    // lista_imprimir_inversa(n0);
     printf("\n\n");
 
-    // lista_inserir_no_i(n5, 0);
+    lista_inserir_no_i(n0, 0);
 
-    printf("Remover NO na posicao i\n");
-    lista_remover_no_i(n0, 2);
+    // printf("Remover NO na posicao i\n");
+    // lista_remover_no_i(n0, 2);
     lista_imprimir(n0);
-    printf("\n\n");
+    // printf("\n\n");
 
-    printf("remover NO com valor \'A\'\n");
-    lista_remover_no(n0, 'A');
-    lista_imprimir(n0);
+    // printf("remover NO com valor \'A\'\n");
+    // lista_remover_no(n0, 'A');
+    // lista_imprimir(n0);
     return 0;
 }

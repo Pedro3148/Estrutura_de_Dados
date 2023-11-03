@@ -17,3 +17,4 @@ void lista_imprimir_inversa(NO* lista);
 void lista_inserir_no_i(NO* lista, int i);
 void lista_remover_no_i(NO* lista, int i);
 void lista_remover_no(NO* lista, char valor_busca);
+void lista_inserir_no_ordenado(NO *lista, NO *no);
