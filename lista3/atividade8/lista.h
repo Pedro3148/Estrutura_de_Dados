@@ -1,20 +1,20 @@
-typedef struct NO {
+typedef struct No {
     char valor;
-    struct NO *proximo_no;
-} NO;
+    struct No *proximo_no;
+} No;
 
-NO *criar_no(char valor, NO *proximo_no);
-void lista_inserir_no(NO *lista, NO *no);
-void lista_imprimir(NO *lista);
-int lista_quantidade_no(NO *lista);
-NO *copiar_lista(NO *lista);
-void lista_concatenar(NO* lista, NO* listaC);
-void lista_liberar(NO* lista);
+No *criar_no(char valor, No *proximo_no);
+void lista_inserir_no(No *lista, No *no);
+void lista_imprimir(No *lista);
+int lista_quantidade_no(No *lista);
+No *copiar_lista(No *lista);
+void lista_concatenar(No* lista, No* listaC);
+void lista_liberar(No* lista);
+void inserir_no_entre_dois_nos(No *no_anterior, No *no);
 
-int lista_verificar_existencia(NO* lista, char valor_busca);
-int lista_verificar_ocorrencias(NO* lista, char valor_busca);
-void lista_imprimir_inversa(NO* lista);
-void lista_inserir_no_i(NO* lista, int i);
-void lista_remover_no_i(NO* lista, int i);
-void lista_remover_no(NO* lista, char valor_busca);
-void lista_inserir_no_ordenado(NO *lista, NO *no);
+int lista_verificar_existencia(No* lista, char valor_busca);
+int lista_verificar_ocorrencias(No* lista, char valor_busca);
+void lista_imprimir_inversa(No* lista);
+void lista_inserir_no_i(No* lista, int i);
+void lista_remover_no_i(No* lista, int i);
+void lista_remover_no(No* lista, char valor_busca);

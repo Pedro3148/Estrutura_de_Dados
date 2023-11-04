@@ -3,37 +3,36 @@
 #include "lista.h"
 
 int main() {
-    NO* n0 = criar_no('C', NULL);
-    NO* n1 = criar_no('E', NULL);
-    NO* n2 = criar_no('A', criar_no('D', criar_no('B', criar_no('X', criar_no('Z', NULL)))));
-    NO* n3 = criar_no('U', NULL);
-    NO* n5 = criar_no('9', NULL);
-    NO* n4 = criar_no('U', criar_no('U', criar_no('U', criar_no('U', criar_no('U', NULL)))));
-
-    lista_inserir_no(n0, n2);
-    lista_inserir_no(n0, n1);
-    lista_inserir_no(n0, n3);
-    lista_inserir_no(n0, n4);
-    lista_imprimir(n0);
-
-
-    // printf("\n\nO valor \'P\' esta contido na lista: %d\n\n", lista_verificar_existencia(n0, 'P'));
+    No *lista = criar_no('0', NULL);
+    No *n1 = criar_no('1', NULL);
+    No *n2 = criar_no('2', NULL);
+    No *n3 = criar_no('3', NULL);
+    No *n4 = criar_no('4', NULL);
+    No *n5 = criar_no('5', NULL);
+    No *n6 = criar_no('5', NULL);
+    No *n7 = criar_no('5', NULL);
     
-    // printf("Ocorrencias: %d\n\n", lista_verificar_ocorrencias(n0, 'U'));
+    lista_inserir_no(lista, n1);
+    lista_inserir_no(lista, n2);
+    lista_inserir_no(lista, n3);
+    lista_inserir_no(lista, n4);
+    lista_inserir_no(lista, n5);
+    lista_inserir_no(lista, n6);
+    lista_inserir_no(lista, n7);
 
-    // printf("Lista Inversa\n");
-    // lista_imprimir_inversa(n0);
-    printf("\n\n");
+    printf("Existencia do Valor 4 na Lista: %d\n\n", lista_verificar_existencia(lista, '4'));
 
-    lista_inserir_no_i(n0, 0);
+    printf("Ocorrencia do Valor 5 na Lista: %d\n\n", lista_verificar_ocorrencias(lista, '5'));
 
-    // printf("Remover NO na posicao i\n");
-    // lista_remover_no_i(n0, 2);
-    lista_imprimir(n0);
-    // printf("\n\n");
+    printf("Lista Inversa: "); lista_imprimir_inversa(lista);
 
-    // printf("remover NO com valor \'A\'\n");
-    // lista_remover_no(n0, 'A');
-    // lista_imprimir(n0);
+    lista_inserir_no_i(lista, 2);
+    printf("\n\nInserir No com valor T na posicao 2: "); lista_imprimir(lista);
+    
+    lista_remover_no_i(lista, 2);
+    printf("\nRemover No na posicao 2: "); lista_imprimir(lista);
+
+    lista_remover_no(lista, '3');
+    printf("\nRemover o valor 3 na lista: "); lista_imprimir(lista);
     return 0;
 }

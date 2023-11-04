@@ -2,107 +2,128 @@
 #include <stdlib.h>
 #include "lista.h"
 
-NO *criar_no(char valor, NO *proximo_no) {
-    NO *no = (NO *) malloc(sizeof(NO));
-    no->valor = valor;
-    no->proximo_no = proximo_no;
+No *criar_no(char valor, No *proximo_no) {
+    No *no = (No *) malloc(sizeof(No));
+    if (no != NULL) {
+        no->valor = valor;
+        no->proximo_no = proximo_no;
+    }
     return no;
 }
 
-void lista_inserir_no(NO *lista, NO *no) {
-    if (lista != NULL) {
-        if (lista->proximo_no == NULL) {
-            lista->proximo_no = no;
-        } else {
-            lista_inserir_no(lista->proximo_no, no);
-        }
+void lista_inserir_no(No *lista, No *no) {
+    if (lista == NULL) return;
+    if (no == NULL) return;
+
+    while (lista->proximo_no != NULL) {
+        lista = lista->proximo_no;
     }
+    lista->proximo_no = no;
 }
 
-void lista_imprimir(NO *lista) {
-    if (lista != NULL) {
+void lista_imprimir(No *lista) {
+    if (lista == NULL) return;
+
+    while (lista != NULL) {
         printf("%c ", lista->valor);
-        lista_imprimir(lista->proximo_no);
+        lista = lista->proximo_no;
     }
+    printf("\n");
 }
 
-int lista_quantidade_no(NO *lista) {
-    if (lista != NULL) {
-        return lista_quantidade_no(lista->proximo_no) + 1;
+int lista_quantidade_no(No *lista) {
+    if (lista == NULL) return 0;
+
+    int qtd = 0;
+    while (lista != NULL) {
+        qtd++;
+        lista = lista->proximo_no;
     }
-    return 0;
+    return qtd;
 }
 
-NO *copiar_lista(NO *lista) {
-    if (lista != NULL) {
-        return criar_no(lista->valor, copiar_lista(lista->proximo_no));
+No *copiar_lista(No *lista) {
+    No *lista_copia = lista;
+    No *l = lista_copia;
+
+    while (lista != NULL) {
+        *lista_copia = *lista;
+        lista_copia = lista_copia->proximo_no;
+        lista = lista->proximo_no;
     }
-    return NULL;
+    return l;
 }
 
-void lista_concatenar(NO* lista, NO* listaC){
-    lista_inserir_no(lista, listaC);
+void lista_concatenar(No *lista1, No *lista2) {
+    while (lista1->proximo_no != NULL) {
+        lista1 = lista1->proximo_no;
+    }
+    lista1->proximo_no = lista2;
 }
 
-void lista_liberar(NO* lista){
+void lista_liberar(No *lista) {
     if(lista != NULL){
         lista_liberar(lista->proximo_no);
         free(lista);
     }
 }
 
-// Funções solicitadas na atividade 8
+int lista_verificar_existencia(No* lista, char valor_busca) {
+    if (lista == NULL) return 0;
 
-int lista_verificar_existencia(NO* lista, char valor_busca) {
-    if (lista == NULL) 
-        return 0;
-    
-    if (valor_busca == lista->valor) 
-        return 1;
-    
-    return lista_verificar_existencia(lista->proximo_no, valor_busca);
+    while (lista != NULL) {
+        if (valor_busca == lista->valor) 
+            return 1;
+        lista = lista->proximo_no;
+    }
+    return 0;
 }
 
-int lista_verificar_ocorrencias(NO* lista, char valor_busca) {
-    int ocorrencia = 0;
-    NO *no_atual = lista;
-    while (no_atual) {
-        if (no_atual->valor == valor_busca)
-            ocorrencia++;
-        no_atual = no_atual->proximo_no;
-    } 
+int lista_verificar_ocorrencias(No *lista, char valor_busca) {
+    if (lista == NULL) return 0;
 
-    return ocorrencia;   
+    int qtd = 0;
+    while (lista != NULL) {
+        if (lista->valor == valor_busca) 
+            qtd++;
+        lista = lista->proximo_no;
+    }
+    return qtd;
 }
 
-void lista_imprimir_inversa(NO* lista) {
+void lista_imprimir_inversa(No *lista) {
     if (lista != NULL) {
         lista_imprimir_inversa(lista->proximo_no);
         printf("%c ", lista->valor);
     }
 }
 
-void lista_inserir_no_i(NO* lista, int i) {
-    if (i < 0 || i > lista_quantidade_no(lista)) {
-        printf("Posicao invalida para insercao.\n");
-        return;
+void lista_inserir_no_i(No *lista, int i) {
+    if (lista == NULL) return;
+    int index = 0;
+
+    while (lista != NULL) {
+        index++;
+        if (i == index) {
+            inserir_no_entre_dois_nos(lista, criar_no('T', NULL));
+            return;
+        }
+        lista = lista->proximo_no;
     }
-    NO *no_atual = lista;
-    int j;
-    for (j = 0; j < i - 1; ++j) {
-        no_atual = no_atual->proximo_no;
-    }
-    NO *no = criar_no('A', no_atual->proximo_no);
-    no_atual->proximo_no = no;
 }
 
-void lista_remover_no_i(NO* lista, int i) {
+void inserir_no_entre_dois_nos(No *no_anterior, No *no) {
+    no->proximo_no = no_anterior->proximo_no;
+    no_anterior->proximo_no = no;
+}
+
+void lista_remover_no_i(No* lista, int i) {
     if (i < 0) {
         printf("Posição inválida para remoção.\n");
         return;
     }
 
-    NO* atual = lista;
+    No* atual = lista;
 
     if (i == 0) {
         lista = lista->proximo_no;
@@ -121,14 +142,14 @@ void lista_remover_no_i(NO* lista, int i) {
         return;
     }
 
-    NO* no_a_remover = atual->proximo_no;
+    No* no_a_remover = atual->proximo_no;
     atual->proximo_no = no_a_remover->proximo_no;
     free(no_a_remover);
 }
 
-void lista_remover_no(NO* lista, char valor_busca) {
-    NO* atual = lista;
-    NO* anterior = NULL;
+void lista_remover_no(No* lista, char valor_busca) {
+    No* atual = lista;
+    No* anterior = NULL;
 
     while (atual != NULL) {
         if (atual->valor == valor_busca) {
