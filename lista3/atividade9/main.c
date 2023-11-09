@@ -25,11 +25,11 @@ int main(int argc, char *argv[]) {
     clock_t inicio = clock();
     while (fscanf(arquivo, "%f", &valor) != EOF) {
         printf("N: %d\n", ++count);
-        //inserir_no_finalLista(lista_nao_ordenada, criar_no(valor, NULL));    
-        lista_inserir_no_ordenado(lista_ordenada, criar_no(valor, NULL));
+        inserir_no_finalLista(lista_nao_ordenada, criar_no(valor, NULL));    
+        // lista_inserir_no_ordenado(lista_ordenada, criar_no(valor, NULL));
     }
     clock_t fim = clock();
-    double tempo = (double) fim - inicio;
+    double tempo = (double) (fim - inicio) / CLOCKS_PER_SEC;
     system("cls");
     printf("Tempo: %f\n", tempo);
     system("pause");
